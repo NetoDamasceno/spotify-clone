@@ -81,22 +81,23 @@ i {
   font-size: 12px;
 }
 
-.nav-playlist button, .nav-podcast button {
+.nav-playlist button,
+.nav-podcast button {
   border-radius: 12px;
   margin-top: 14px;
   width: 50%;
   padding: 6px 10px;
 }
 
-.btn-default{
-  transition: all 0.2s;  
+.btn-default {
+  transition: all 0.2s;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  
+
   &&:hover {
-    font-weight: 800;
-    opacity: 0.9;
+    font-weight: 700;
+    transform: scale(1.05);
   }
   &&:active {
     opacity: 0.7;
@@ -138,6 +139,10 @@ i {
   &&:hover {
     border: 1px solid #fff;
     transition: 0.5s;
+    transform: scale(1.05);
+  }
+  &&:active {
+    opacity: 0.4;
   }
 }
 
@@ -152,23 +157,59 @@ main {
   align-items: center;
 }
 
-.search-bar input {
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
   background-color: #242424;
-  border: none;
-  border-radius: 20px;
-  color: #fff;
-  padding: 8px 16px;
+  border-radius: 50px;
+  padding-left: 36px;
   margin-left: 10px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-wrapper i {
+  position: absolute;
+  left: 12px; 
+  color: #b3b3b3;
+  font-size: 16px;
+}
+
+.input-search {
+  background: transparent;
+  border:  none;
+  color: #fff;
+  padding: 10px 16px;
+  width: 240px; 
+  font-size: 14px;
+  border-radius: 50px;
+  outline: none;
+}
+
+.search-input-wrapper:focus-within {
+  outline: 2px solid #fff; 
+  outline-offset: 0;
+}
+
+.search-input-wrapper:hover {
+  background-color: #3a3a3a;
 }
 
 .search-bar a {
   color: #8f8f8f;
   text-decoration: none;
   margin-left: 12px;
+  font-weight: 600;
 
   &&:hover {
     color: #fff;
+    transition: 0.5s;
+    transform: scale(1.05);
   }
+}
+
+.search-bar button {
+  margin-left: auto;
 }
 
 .content {
@@ -179,14 +220,16 @@ main {
   margin-bottom: 10px;
 }
 
-.artists-grid, .albums-grid {
+.artists-grid,
+.albums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
 }
 
-.artist-card, .album-card {
+.artist-card,
+.album-card {
   cursor: pointer;
   text-align: start;
   padding: 10px;
@@ -201,7 +244,8 @@ main {
   }
 }
 
-.artist-card img, .album-card img {
+.artist-card img,
+.album-card img {
   max-width: 100%;
   max-height: 70%;
   border-radius: 50%;
@@ -212,7 +256,8 @@ main {
   border-radius: 2%;
 }
 
-.artist-card h3, .album-card h3 {
+.artist-card h3,
+.album-card h3 {
   font-size: 15px;
   font-weight: 500;
 
@@ -221,7 +266,8 @@ main {
   }
 }
 
-.artist-card p, .album-card p {
+.artist-card p,
+.album-card p {
   font-size: 12px;
   color: #8f8f8f;
 }
@@ -235,7 +281,7 @@ main {
   bottom: 0;
   right: 0;
   left: 0;
-  background: linear-gradient(90deg, #AF2896, #5098F5);
+  background: linear-gradient(90deg, #af2896, #5098f5);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -250,9 +296,134 @@ main {
   font-size: 12px;
 }
 
-.banner button {
+.banner button, .search-bar button {
   border-radius: 20px;
   border: none;
   color: #000;
   padding: 12px 20px;
+}
+ 
+/* RESPONSIVIDADE */
+
+@media (max-width: 1024px) {
+  .navbar {
+    width: 260px;
+  }
+
+  .search-input-wrapper .input-search {
+    width: 180px;
+  }
+
+  .search-bar a {
+    margin-left: 8px;
+    font-size: 13px;
+  }
+
+  .btn-default {
+    padding: 8px 18px;
+  }
+
+  .artists-grid,
+  .albums-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .navbar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    overflow-x: auto;
+  }
+
+  .nav-library,
+  .nav-playlist,
+  .nav-podcast,
+  .nav-footer,
+  .nav-lang-btn {
+    display: none; 
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  .search-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-input-wrapper {
+    flex-grow: 1;
+    margin-left: 0;
+  }
+
+  .search-bar a {
+    font-size: 13px;
+  }
+
+  .search-bar button {
+    margin-left: 0;
+  }
+
+  .banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .banner button {
+    width: 100%;
+  }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+  .nav-logo i {
+    font-size: 28px;
+  }
+
+  .search-bar {
+    justify-content: center;
+  }
+
+  .search-input-wrapper {
+    padding-left: 32px;
+  }
+
+  .input-search {
+    width: 150px;
+  }
+
+  .artists-grid,
+  .albums-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .artist-card h3,
+  .album-card h3 {
+    font-size: 13px;
+  }
+
+  .artist-card p,
+  .album-card p {
+    font-size: 11px;
+  }
+
+  .banner h2 {
+    font-size: 14px;
+  }
+
+  .banner p {
+    font-size: 11px;
+  }
 }
